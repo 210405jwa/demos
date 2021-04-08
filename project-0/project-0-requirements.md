@@ -7,7 +7,7 @@ Leveraging Java 8 and following test driven development (TDD), create a RESTful 
 1. Java
 2. Javalin
 3. JDBC
-4. Log4J / SLF4J
+4. Logback / SLF4J
 5. JUnit
 6. Mockito
 7. MariaDB
@@ -38,7 +38,7 @@ The following endpoints and their respective verbs should support the operations
     - Data Access layer
 - 80-90% test coverage for the **service layer** using JUnit is required
     - Utilize Mockito in order to mock DAO dependencies
-- Logging should be accomplished using Log4J
+- Logging should be accomplished using Logback
     - Have a mental model of what should ideally be logged in an application
         - Http Requests
         - Methods being executed
