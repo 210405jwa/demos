@@ -1,0 +1,330 @@
+# Study Guide
+
+Topics Covered: Java
+
+Review the material covered this week
+
+Be able to answer "Tell me about your experience with X?"
+
+Know how to switch between short answers and detailed answers. For example, if you're asked about the four pillars, provide as much detail as possible. If they ask you a more specific question, then think about whether to elaborate a lot or just to keep it short.
+
+Also be able to provide the overall reasons of `why` something is done or why certain features are available, such as what problems they might solve.
+
+# Topics
+- Intro To Java
+    - High Level (What is Java?) (What are the benefits?) (What is OOP?)
+    - Benefits of Java
+        - Automatic memory management (garbage collection)
+        - Platform independence (write once, run anywhere)
+        - Rich Open Source Community
+        - Extensive Runtime library (JRE)
+        - C-based (therefore easy to learn)
+    - Characteristics
+        - Compiled language
+        - Strongly typed
+        - Object Oriented
+- JVM, JRE, JDK
+    - JDK: Java Development Kit
+        - If you are a developer, this is what you need
+        - Includes the JRE + JVM
+        - Compiler + Debugger
+    - JRE: Java Runtime Environment
+        - If you are a consumer, this is what you need
+        - Includes runtime libraries + JVM
+            - All of the built in classes, etc. in Java. (String class, StringBuilder, etc.)
+    - JVM: Java Virtual Machine
+        - Executes bytecode
+            - Bytecode is produced by the compiler
+        - Helps us achieve platform independence
+            - Many different OS specific JVMs
+- Variables
+    - Primitive variables
+        - byte (1 byte)
+        - short (2 bytes)
+        - char (2 bytes)
+        - int (4 bytes)
+        - long (8 bytes)
+        - float (4 bytes)
+        - double (8 bytes)
+        - boolean (JVM-dependent in size)
+    - Reference variables
+    - Upcasting v. Downcasting
+        - Upcasting: Going from more specific to less specific
+            - Casting from child to parent
+            - "safe"
+        - Downcasting: Going from less specific to more specific
+            - Casting from parent to child
+            - "unsafe"
+        - for primitives, narrowing v. widening
+            - widening is "safe"
+            - narrowing is "unsafe"
+- Access Modifiers
+    - public: accessible anywhere
+    - protected: accessible from the package AND subclasses that can be anywhere
+    - default: accessible from the package
+    - private: accessible from the same class only
+- Non Access Modifiers
+    - static
+    - final
+    - abstract
+    - synchronized
+    - volatile
+    - strictfp
+    - native
+    - transient
+- Variable Scopes
+    - Static (global/class)
+    - Instance
+    - Method
+    - Block
+- Packages
+    - Import
+    - Static Import
+- Main method syntax
+    - `public static void main(String[] args)`
+    - What the main method is for
+- Memory Management
+    - Garbage Collector
+    - Stack & Heap
+    - Heap contains String Pool
+        - Not all Strings are in the String Pool
+        - Know about when they actually are
+- Constructors
+    - Default constructor (when do we actually have this one?)
+    - No-args
+    - Parameterized
+    - Constructor Chaining (this() or super())
+- Object class
+    - Methods on the Object class that are inherited by all classes
+        - hashCode
+        - equals
+        - toString
+        - clone
+        - These are for multithreading, for the objects functioning as locks
+            - wait
+            - notify
+            - notifyAll
+- Strings
+    - Immutable
+        - What that means
+    - String API methods
+    - Leverages String Pool for literals
+- StringBuffer & StringBuilder
+    - Know the difference between these two
+    - Their speeds/performance
+- Control flow statements
+    - If/else
+    - Switch
+    - For
+    - Enhanced For loop (how does this one work?)
+        - Iterable interface + Iterator
+    - While
+    - Do-while
+- Operators
+    - Increment & Decrement
+        - Pre v. post
+    - Ternary operator (? mark operator)
+    - Logical Operators
+        - Short-circuiting
+            - OR (||)
+            - AND - &&
+        - Non-short circuiting
+            - &
+            - |
+- Wrapper Classes
+    - Object versions of the primitives
+    - Immutable
+    - Autoboxing and Unboxing
+        - Know what these are
+        - Automatic conversion from primitives to wrapper objects and vice versa
+- Arrays
+    - fixed length
+    - contiguous in memory
+    - indices
+    - O(1) access
+- Varargs
+    - ... operator
+    - treated as an array
+- Annotations
+    - @Override
+    - @FunctionalInterface
+    - Provide metadata to whatever is being annotated
+    - Often used w/ the Reflection API to do some really cool stuff with various frameworks
+- 4 Pillars of OOP
+    - Abstraction
+        - Abstract classes and interfaces
+    - Polymorphism
+        - Method overloading
+            - "Compile-time polymorphism"
+            - Set in stone at the time of compilation
+        - Method Overriding
+            - "Runtime polymorphism"
+            - JVM figures out at runtime what implementation to execute based on the object the reference variable is pointing to
+            - So if Animal a were pointing to Dog, `makeNoise()` would be different than if it were pointing to Cat
+            - We can change whether it is pointing to Dog or to Cat at Runtime
+        - Covariance
+            - `Animal a = new Dog()`
+    - Inheritance
+        - IS-A relationship
+        - Subclasses are more SPECIFIC
+    - Encapsulation
+        - getters/setters
+        - private access modifiers
+- Exceptions & Exception Handling
+    - Keywords
+        - throw: throwing the exception
+            - `Exception e = new Exception()`
+            - `throw e`
+            - OR
+            - `throw new Exception()`
+        - throws: declaring that a method COULD potentially throw this exception
+        - try
+        - catch
+            - Make sure more specific exceptions are listed first
+            - So, for example, `catch (Exception e)` should go last if you have it, because it is the least specific
+        - finally
+    - Class hierarchy
+        - Throwable
+            - Exception: normal part of our programs
+                - RuntimeException
+                    - ArithmeticException
+                    - NullPointerException
+                    - IllegalArgumentException
+                    - ClassCastException
+                - IOException
+                - ClassNotFoundException
+            - Error: typically you shouldn't catch and handle errors, because errors usually mean something really bad has happened
+                - StackOverflowError
+                - OutOfMemoryError
+    - Checked v. Unchecked exceptions
+        - What differentiates the two?
+            - Checked exceptions are required to be declared with the throws keyword, or handled with try-catch
+            - Unchecked does not need to, but if you don't handle them, your program WILL crash
+    - When do ALL exceptions occur?
+        - AT RUNTIME
+        - AT RUNTIME!!!
+        - There is no such thing as an exception that happens at compilation
+    - Creating custom exceptions
+        - Know about how to create an unchecked exception
+        - Know about how to create a checked exception
+- JUnit
+    - Unit testing library
+    - Different from manual testing, here we do things using test cases that we write
+    - Annotations
+        - `@Test`
+        - `@BeforeClass`
+        - `@AfterClass`
+        - `@Before`
+        - `@After`
+        - `@Ignore`
+    - Assert Methods
+        - static methods to assert what we expect v. actual
+        - assertTrue
+        - assertEquals
+        - assertNotEquals
+        - assertArrayEquals
+        - assertSame
+        - assertNotSame
+    - Test Driven Development (TDD)
+        - philsophy of testing
+        - Write tests first, then the actual application code
+- Serialization
+    - Converting objects into storable or transmissible data
+    - for example serializing to JSON
+    - Java has an old obsolete Serialization API
+- Collections API
+    - Collections Hierarchy
+    - Iterable
+        - Collection
+            - Set
+                - HashSet
+                - TreeSet
+            - List
+                - ArrayList
+                - LinkedList
+            - Queue
+                - LinkedList
+                - PriorityQueue
+    - Map (separate from the others)
+        - HashMap
+        - TreeMap
+    - Understand characteristics of each data structure
+    - Generics
+    - Why we need wrapper classes to use primitives with collections
+- Reflections API
+    - API for a program to analyze itself at runtime
+    - Classes/interfaces to do this
+        - Class Class
+        - Field Class
+- Concurrency
+    - Idea of multi-threading, doing overlapping tasks at a time
+    - Concurrency v. parallel
+        - Parallel is only possible with multiple cores, so that we can actually do multiple processing at the SAME time
+    - Thread class
+    - Runnable interface
+    - The two ways to create and start a thread
+    - Lifecycle
+        - NEW
+        - RUNNABLE
+        - BLOCKED
+        - WAITING
+        - TIMED WAITING
+        - TERMINATED
+    - Race conditions
+    - Deadlock & livelock
+- Design Patterns
+    - POJO (Plain old Java Object) / Java Bean
+    - Singleton
+    - Factory
+- Logback
+    - Importance of logging
+    - Logging levels
+    - Logging architecture
+        - Appenders
+        - Loggers
+        - LayoutPattern
+- Maven
+    - Dependency manager and build automation tool
+    - Maven Repositories
+        - mvnrepository
+    - Maven Lifecycle
+        - Build
+            - IMPORTANT
+        - Know about the different stages that are part of the build lifecycle
+    - Maven `pom.xml` file
+        - Stands for Project Object Model
+        - How Maven represents your project and all of the settings/configuration of the project
+    - mvn command-line utility
+        - Every lifecycle phase/stage is a command
+            - `mvn package`
+            - `mvn test`
+- Advanced Java features
+    - try-with-resources
+    - Date & Time API
+    - Stream API
+        - Functional programming
+        - Lambdas
+            - Functional Interfaces
+- Git
+    - Version control software
+    - Full timeline/history of codebase changes
+    - We can revert back to previous commits, for example
+    - Best practices:
+        - lowercase branch names
+        - Pull before you push
+        - Commit frequently in projects to avoid large issues
+        - Create different branches for each feature of your project
+        - Then merge when you're done with that feature to the main branch
+    - Merging and rebasing
+    - Commands:
+        - git clone
+        - git pull
+        - git push
+        - git commit
+        - git merge
+        - git rebase
+        - git branch
+        - git checkout
+        - git add
+    - Know about the general workflow
+    - Research about Optional
