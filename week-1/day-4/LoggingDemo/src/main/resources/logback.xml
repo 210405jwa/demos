@@ -1,0 +1,26 @@
+<configuration>
+	<appender name="myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="myFileAppender" class="ch.qos.logback.core.FileAppender">
+		<file>test.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="myWarningFileAppender" class="ch.qos.logback.core.FileAppender">
+		<file>warnings.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+		
+	<root level="INFO">
+		<appender-ref ref="myConsoleAppender" />
+		<appender-ref ref="myFileAppender" />
+	</root>
+</configuration>
