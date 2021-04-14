@@ -26,7 +26,7 @@ CREATE TABLE books (
 	title VARCHAR(100) NOT NULL,
 	genre VARCHAR(100) NOT NULL,
 	author_id INTEGER NOT NULL,
-	CONSTRAINT `fk_books_authors` FOREIGN KEY (author_id) REFERENCES authors (id)
+	CONSTRAINT `fk_books_authors` FOREIGN KEY (author_id) REFERENCES authors (id) ON DELETE CASCADE
 );
 
 INSERT INTO books 
@@ -38,6 +38,16 @@ VALUES
 
 SELECT *
 FROM books;
+
+SELECT *
+FROM authors;
+
+
+DELETE FROM books 
+WHERE author_id = 2;
+
+DELETE FROM authors 
+WHERE id = 2;
 
 /*
  * Joins
@@ -73,12 +83,10 @@ INNER JOIN books b
 ON b.author_id = a.id
 WHERE LENGTH(b.title) > 10;
 
-
 -- AGGREGATE FUNCTIONS CANNOT BE USED INSIDE THE WHERE CLAUSE
 -- BUT, they can be used inside HAVING
 
 -- There is a group of functions that can be used inside the where clause, however. This would be the SCALAR functions
-
 
 CREATE TABLE person (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -108,3 +116,56 @@ WHERE age < 20 -- WHERE will filter out rows BEFORE you group by and do aggregat
 GROUP BY name
 HAVING AVG(age) > 10; -- HAVING filters AFTER you have already grouped together rows
 
+
+-- UNION: doesn't keep duplicates
+SELECT *
+FROM books 
+UNION
+SELECT *
+FROM books
+
+-- UNION ALL: does keep duplicates
+-- Get the result of books starting with the letter H AND letter L
+SELECT *
+FROM books
+WHERE title LIKE 'H%'
+UNION ALL
+SELECT *
+FROM books
+WHERE title LIKE 'L%';
+
+-- without set operations
+SELECT *
+FROM books 
+WHERE title LIKE 'H%' OR title LIKE 'L%';
+
+-- Get all books except for books starting with the letter H
+SELECT *
+FROM books 
+EXCEPT
+SELECT *
+FROM books 
+WHERE title like 'H%';
+
+-- without set operations
+SELECT * 
+FROM books 
+WHERE title NOT LIKE 'H%';
+
+/*
+ * Pirate demonstration
+ */
+
+SELECT *
+FROM pirates;
+
+CREATE TABLE pirates (
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO pirates 
+(first_name, last_name) 
+VALUES
+('Edward', 'Thatch')
