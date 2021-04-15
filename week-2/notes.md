@@ -23,6 +23,35 @@ To provide for a way to utilize the concept of relational databases, we have RDB
     - Oracle SQL
     - MS SQL Server
 
+# Datatypes
+
+## Numeric
+- DECIMAL/NUMERIC
+- FLOAT
+- DOUBLE
+- INTEGER/INT
+- TINYINT
+- SMALLINT
+
+## DATE AND TIME
+- DATE
+- TIME
+- DATETIME
+- TIMESTAMP
+
+## Characters / Strings
+- VARCHAR
+- CHAR
+- TEXT
+- BLOB
+
+## Binary
+- BLOB
+- MEDIUMBLOB
+- LONGBLOB
+- BINARY
+- VARBINARY
+
 # SQL Sublanguages
 - DDL = Data Definition Language
     - For creation/alteration of table structure
@@ -217,6 +246,20 @@ We want to treat withdrawing and depositing as a single transaction instead of t
 - Consistency: constraints are enforced for every transaction that is committed. We cannot commit changes if they do not follow constraints set for the database. Primary key, foreign key, data types, checks, NOT NULL, UNIQUE, referential integrity, etc. need to be upheld.
 - Isolation: If we have two transactions occuring at the same time, this principle of isolation is just talking about how we should deal with these concurrent transactions. If we have two transactions occuring, they should not be disturbing the other transaction, and if they do, then we have certain isolation levels that we can set on our database to deal with those.
 - Durability: When a transaction is complete (has been committed), it is persisted to the database inside of permanent memory (like the hard drive instead of the RAM). So, even if our system lost power during a storm, let's say, the changes will still be there. 
+
+# Read Phenomena
+https://en.wikipedia.org/wiki/Isolation_(database_systems)#Read_phenomena
+
+This is related to the I (isolation) in ACID properties. It refers to the degree in which two transactions will interfere with each other when doing some sort of modifications and reads on the same data.
+- When applications become more complex and more traffic and modifications happen concurrently, we need to account for these issues (**read phenomena**).
+- The more strict our isolation level, the more careful the system is about avoiding conflicts, but this could cause performance issues since concurrency would decrease with a more strict level.
+
+| Isolation Level | Dirty Read | Non-repeatable Read | Phantom Read |
+| :-------------- | :--------- | :-------- | :---------|
+| Read Uncommitted | Y | Y | Y |
+| Read Committed | N | Y | Y |
+| Repeatable Read | N | N | Y |
+| Serializable | N | N | N |
 
 # Database Joins
 - Joins are operations that allow us to "join" together data from different tables
