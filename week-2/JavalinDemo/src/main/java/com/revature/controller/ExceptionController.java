@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.revature.exceptions.BadParameterException;
+import com.revature.exceptions.DatabaseConnectionException;
 import com.revature.exceptions.PirateNotFoundException;
 
 import io.javalin.Javalin;
@@ -26,10 +27,16 @@ public class ExceptionController implements Controller {
 		ctx.status(404); // 404 not found
 	};
 	
+	private ExceptionHandler<DatabaseConnectionException> databaseConnectionExceptionHandler = (e, ctx) -> {
+		logger.error("Could not connect to database. Exception message is \n" + e.getMessage());
+		ctx.status(503); // service unavailable
+	};
+	
 	@Override
 	public void mapEndpoints(Javalin app) {
 		app.exception(BadParameterException.class, badParameterExceptionHandler);
 		app.exception(PirateNotFoundException.class, pirateNotFoundExceptionHandler);
+		app.exception(DatabaseConnectionException.class, databaseConnectionExceptionHandler);
 	}
 
 }
