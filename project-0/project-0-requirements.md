@@ -1,7 +1,9 @@
 # Project 0: RESTful API
 
 ## Description
-Leveraging Java 8 and following test driven development (TDD), create a RESTful API application that supports two main resources: clients and accounts
+You are developing a simple API for a bank.
+
+Leveraging Java 8 and following test driven development (TDD), create a RESTful API application that supports two main resources: clients and accounts.
 
 ### Technologies
 1. Java
