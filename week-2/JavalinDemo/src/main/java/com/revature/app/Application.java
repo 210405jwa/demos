@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.revature.controller.Controller;
 import com.revature.controller.ExceptionController;
 import com.revature.controller.PirateController;
+import com.revature.controller.ShipController;
 import com.revature.controller.StaticFileController;
 
 import io.javalin.Javalin;
@@ -25,7 +26,8 @@ public class Application {
 			logger.info(httpMethod + " request to endpoint " + URI + " received");
 		});
 		
-		mapControllers(new PirateController(), new ExceptionController(), new StaticFileController());
+		mapControllers(new PirateController(), new ExceptionController(), 
+				new StaticFileController(), new ShipController());
 		
 		app.start(7001);
 		

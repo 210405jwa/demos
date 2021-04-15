@@ -1,9 +1,16 @@
 package com.revature.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import com.revature.dao.PirateRepository;
+import com.revature.dto.PostPirateDTO;
+import com.revature.exceptions.AddPirateException;
 import com.revature.exceptions.BadParameterException;
+import com.revature.exceptions.DatabaseException;
 import com.revature.exceptions.PirateNotFoundException;
 import com.revature.model.Pirate;
+import com.revature.util.ConnectionUtil;
 
 public class PirateService {
 
@@ -19,20 +26,32 @@ public class PirateService {
 		this.pirateRepository = pirateRepository;
 	}
 	
-	public Pirate getPirateById(String stringId) throws BadParameterException, PirateNotFoundException {
+	public Pirate addPirate(String stringId, PostPirateDTO pirateDTO) throws BadParameterException, DatabaseException, AddPirateException {
 		try {
-			int id = Integer.parseInt(stringId);
+			Connection connection = ConnectionUtil.getConnection(); // Have control over a connection object here
+			this.pirateRepository.setConnection(connection); // pass the connection into the DAO
+			connection.setAutoCommit(false); // Turn off autocommit so we have control over commit v. not committing
 			
-			Pirate pirate = pirateRepository.getPirateById(id);
-			
-			if (pirate == null) {
-				throw new PirateNotFoundException("Pirate with id of " + id + " was not found");
+			if (pirateDTO.getFirstName().trim().equals("") || pirateDTO.getLastName().trim().equals("")) {
+				throw new AddPirateException("Pirate first/last names cannot be blank");
 			}
 			
-			return pirate;
-		} catch (NumberFormatException e) {
-			throw new BadParameterException("Pirate id must be an int. User provided " + stringId);
+			try {
+				int shipId = Integer.parseInt(stringId);
+				
+				Pirate pirate = pirateRepository.addPirate(shipId, pirateDTO);
+				
+				connection.commit(); // This is when changes will actually be persisted
+				return pirate;
+			} catch (NumberFormatException e) {
+				throw new BadParameterException("Ship id must be an int. User provided " + stringId);
+			}
+			
+		} catch (SQLException e) {
+			throw new DatabaseException("Something went wrong when trying to get a connection. "
+					+ "Exception message: " + e.getMessage());
 		}
+
 	}
 	
 }
