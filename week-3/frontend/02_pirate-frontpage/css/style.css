@@ -1,0 +1,107 @@
+/* CSS Reset, so we are switching all of the default margins, padding to 0 */
+/* box-sizing: border-box??? */
+/* In CSS, we have the box model, which is composed of the content, the padding,
+the border, and the margin */
+/* By setting box-sizing to border-box, we are not including padding as part of 
+the width or height attributes, so that we can be really consistent with width + height */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5em;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 80%;
+    margin: auto;
+}
+
+/* Navbar */
+@media only screen and (max-width: 679px) {
+    #navbar {
+        background: #222;
+        overflow: auto;
+        height: 50px;
+        padding-top: 15px;
+    }
+    
+    #navbar a {
+        color: rgb(245, 178, 53);
+    }
+    
+    #navbar a:hover {
+        color: #ffffff;
+    }
+    
+    .logo {
+        color: #fff;
+    }
+    
+    #navbar h1 {
+        float: left;
+        padding-top: 0px;
+    }
+    
+    #navbar ul {
+        list-style: none;
+        float: right;
+    }
+    
+    #navbar ul li {
+        display: inline-block;
+        padding: 0px;
+        background-color: rgb(73, 71, 71);
+    }
+    
+    #navbar ul li:hover {
+        background-color: rgb(230, 148, 16);
+    }
+}
+
+@media only screen and (min-width: 680px) {
+    #navbar {
+        background: #222;
+        overflow: auto;
+    }
+    
+    #navbar a {
+        color: rgb(245, 178, 53);
+    }
+    
+    #navbar a:hover {
+        color: #ffffff;
+    }
+    
+    .logo {
+        color: #fff;
+    }
+    
+    #navbar h1 {
+        float: left;
+        padding-top: 20px;
+    }
+    
+    #navbar ul {
+        list-style: none;
+        float: right;
+    }
+    
+    #navbar ul li {
+        display: inline-block;
+        padding: 20px;
+        background-color: rgb(73, 71, 71);
+    }
+    
+    #navbar ul li:hover {
+        background-color: rgb(230, 148, 16);
+    }
+}

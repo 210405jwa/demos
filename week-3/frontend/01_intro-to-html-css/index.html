@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Meta tags just provide some sort of metadata for our webpage
+        They could be used to indicate different keywords, or a description of the page
+        so that robots crawling our website such as Google can index the webpage
+        onto the search engine -->
+        <meta charset="UTF-8" />
+        <title>My First Website</title>
+
+        <!-- You can include JavaScript files -->
+        <!-- <script src="index.js" defer></script> -->
+
+        <!-- 3 different ways of including CSS: -->
+        <!-- Inline using the style HTML attribute  -->
+        <!-- Internally Using the style tag -->
+        <link rel="stylesheet" href="css/style.css" />
+        <style>
+            h1 {
+                color: #0ef1f1;
+            }
+        </style>
+
+        <!-- Externally by linking to a .css file -->
+        <!-- Which ways of including CSS has the highest precedence to lowest? -->
+        <!-- 1. Inline -->
+        <!-- 2. Internally -->
+        <!-- 3. Externally -->
+
+        <!-- When to use IDs v. Classes? -->
+        <!-- IDs are intended to be used for only 1 single element -->
+        <!-- While classes are intended to be reused over and over again -->
+        <!-- the id and class HTML attributes are typically used for us to be able
+        to select certain elements that have those classes and ids for styling purposes
+        (or in the case of JavaScript, to select those elements from the DOM) -->
+    </head>
+    <body>
+        <!-- Headings -->
+        <h1 style="color: red;">Hello Live-server!!!!</h1>
+        <h1>This is another h1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4 class="someclass">Heading 4</h4>
+        <h5 class="someclass anotherclass yetanotherclass" id="main-title">Heading 5</h5>
+        <h6>Heading 6</h6>
+
+        <!-- paragraph -->
+        <p>Lorem ipsum     <!-- Browser will only interpret the consecutive spaces as 1 space-->          dolor sit, amet consectetur adipisicing elit. Nobis odio aspernatur a quos voluptate! Totam velit culpa omnis possimus? Vero quia nisi natus at ipsum nihil optio corrupti maiores dolores repellat, quidem, fuga quisquam nulla! Ex facere voluptates obcaecati explicabo earum error nisi asperiores blanditiis nemo eos perferendis natus officiis placeat eligendi, maxime optio ad corrupti deleniti dolor est, mollitia modi temporibus minima. Eos praesentium id fugiat a officia iure. Nam doloremque expedita libero ipsum, nisi, deleniti incidunt nulla eligendi harum possimus placeat? Ad, eum autem quibusdam alias maxime <br> pariatur tempora nostrum minima voluptatem illo quasi atque nobis vitae aut!</p>
+
+        <!-- Horizontal Rule -->
+        <hr>
+
+        <h1><a href="http://google.com">Go to Google</a></h1>
+
+        <img src="https://static.turbosquid.com/Preview/001144/917/L1/cartoon-pirate-ship-3D-model_0.jpg" alt="A pirate ship">
+
+        <!-- Lists -->
+        <!-- Unordered Lists -->
+
+        <!-- In Modern web development, what are unordered lists usually used for -->
+        <!-- Links, such as on a navbar, etc -->
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        <ol>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ol>
+
+        <!-- Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Pirate ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Edward</td>
+                    <td>Thatch</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Peggy</td>
+                    <td>Pegleg</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Inline v. Block -->
+
+        <!-- What is the div tag? -->
+        <!-- Divides parts of the webpage that we can later style for example -->
+        <!-- What type of element is a div by default? -->
+
+        <!-- block element -->
+        <!-- Block elements take up the entire width of the screen -->
+        <!-- You can set a width and height for a block element as well -->
+        <!-- Block elements go on individual lines -->
+        <!-- So there is a new line for each block element -->
+        <div style="border: 2px solid green;">
+            This is a block element
+        </div>
+
+        <br>
+        <!-- inline element -->
+        <!-- Inline elements only take up the width required -->
+        <!-- You also cannot change the width and height -->
+        <!-- Inline elements will basically go next to each other -->
+        <span style="border: 2px solid red;">
+            This is an inline element
+        </span>
+        <img src="https://static.turbosquid.com/Preview/001144/917/L1/cartoon-pirate-ship-3D-model_0.jpg" alt="Pirate Ship" width="100" height="100">
+
+
+        <br><br><br>
+
+        <!-- Forms -->
+        <form>
+            <!-- email input -->
+            <div>
+                <label for="email">Enter Email:</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <!-- text input -->
+            <div>
+                <label for="firstname">Enter First Name:</label>
+                <input type="text" name="firstname" id="firstname">
+            </div>
+            <div>
+                <label for="firstname">Enter Last Name:</label>
+                <input type="text" name="lastname" id="lastname">
+            </div>
+            <!-- number input -->
+            <div>
+                <label for="age">Enter Age:</label>
+                <input type="number" name="age" id="age">
+            </div>
+
+            <!-- Textarea (which is not an input element, but rather its own tag) -->
+            <textarea name="post" id="post" cols="50" rows="20"></textarea>
+
+            <!-- Select (dropdowns) -->
+            <div>
+                <select name="gender" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Explore other inputs as needed for your apps -->
+            <!-- Radio buttons -->
+            <!-- Checkboxes -->
+            <!-- etc -->
+        </form>
+    </body>
+</html>
