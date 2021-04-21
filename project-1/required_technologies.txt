@@ -1,0 +1,25 @@
+Project 1 Required Techologies
+- Java
+- MariaDB
+- Javalin
+- JavaScript*
+	- AJAX (a term for asynchronous JavaScript w/ XML) 
+- HTML*
+- CSS*
+	- You can use bootstrap to make things easier
+- Logback
+- JUnit
+
+Optional (HARD MODE)
+- Angular (Replaces the * technologies)
+
+You will have to figure out how to implement the uploading of receipt images, pdfs some other
+file types on your own. So, prioritize this last, but it is a requirement.
+
+So,
+
+You will need to figure out how to design your endpoints, your frontend, etc.,
+but these requirements should be met in the ERS_Requirements.pdf
+
+
+
