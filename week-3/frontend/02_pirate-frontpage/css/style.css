@@ -28,7 +28,7 @@ a {
 /* Navbar */
 @media only screen and (max-width: 679px) {
     #navbar {
-        background: #222;
+        background-color: #222;
         overflow: auto;
         height: 50px;
         padding-top: 15px;
