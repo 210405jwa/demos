@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- JDBC database connection settings -->
+		<property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mariadb://database-1.clwebyd8kmnl.us-east-2.rds.amazonaws.com:3306/hibernate_demo</property>
+		
+		<!-- SQL Dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MariaDB103Dialect</property>
+		
+		<!-- Show generated SQL queries -->
+		<property name="show_sql">true</property>
+		
+		
+		<!-- Used to create, update, or validate database schema -->
+		<!-- Possible options:
+		1. create - creates new database tables based on existing class mappings. If the tables already exist,
+		it will drop the existing tables and recreate them
+		2. update - update the existing tables to match the class mappings
+		3. validate - validate existing tables against class mappings. If validation fails, application will not work
+		properly
+		4. create-drop - same as create, but will drop all tables once SessionFactory is closed -->
+		<property name="hbm2ddl.auto">validate</property>
+		
+		<!-- Specify our entity/class mappings here -->
+		<mapping class="com.revature.models.Pirate"></mapping>
+		<mapping class="com.revature.models.Ship"></mapping>
+		
+	</session-factory>
+</hibernate-configuration>

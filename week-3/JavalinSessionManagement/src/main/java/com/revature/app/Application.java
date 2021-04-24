@@ -14,7 +14,11 @@ public class Application {
 	private static Logger logger = LoggerFactory.getLogger(Application.class);
 	
 	public static void main(String[] args) {
-		Javalin app = Javalin.create();
+		Javalin app = Javalin.create((config) -> {
+			config.addStaticFiles("static");
+//			config.enableCorsForAllOrigins();
+//			config.enableCorsForOrigin("http://somewebsite.com");
+		});
 		
 		mapControllers(app, new LoginController(), new ExceptionMapper());
 		
