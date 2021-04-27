@@ -14,6 +14,10 @@
 		<!-- Show generated SQL queries -->
 		<property name="show_sql">true</property>
 		
+		<!-- L2 Caching Settings (setup) -->
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
+		<property name="cache.provider_class">org.hibernate.cache.EhcacheProvider</property>
 		
 		<!-- Used to create, update, or validate database schema -->
 		<!-- Possible options:

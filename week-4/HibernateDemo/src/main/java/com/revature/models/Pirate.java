@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "pirate")
 public class Pirate {
@@ -17,8 +20,14 @@ public class Pirate {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	// If we specified a cascade type of ALL / or REMOVE, etc. here, then if we delete a single pirate from our ship,
+	// It will actually cascade the remove operation to the ship itself.
+	// That's definitely not what we want, so be careful with how you specify CascadeType
 	@ManyToOne // Many pirates belong to one ship
 	@JoinColumn(name = "ship_id") // Explicitly give a name for the foreign key column
+	//	@JsonBackReference // This would help resolve infinite looping when serializing to JSON
+	// We need the Jackson databind dependency for this annotation, which is the dependency that Javalin depends on for
+	// JSON serialization
 	private Ship ship;
 	
 	@Column(name = "first_name")
@@ -31,10 +40,8 @@ public class Pirate {
 		super();
 	}
 
-	public Pirate(int id, Ship ship, String firstName, String lastName) {
+	public Pirate(String firstName, String lastName) {
 		super();
-		this.id = id;
-		this.ship = ship;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
@@ -113,7 +120,7 @@ public class Pirate {
 
 	@Override
 	public String toString() {
-		return "Pirate [id=" + id + ", ship=" + ship + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Pirate [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	
 }
