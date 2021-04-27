@@ -8,7 +8,7 @@ public class SessionUtility {
 
 	private static SessionFactory sessionFactory;
 	
-	public synchronized static Session getSession() {
+	public synchronized static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			sessionFactory = new Configuration()
 								.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"))
@@ -17,7 +17,7 @@ public class SessionUtility {
 								.buildSessionFactory();
 		}
 		
-		return sessionFactory.openSession();
+		return sessionFactory;
 	}
 	
 }

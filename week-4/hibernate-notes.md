@@ -6,6 +6,16 @@
 - Maps Java classes to database tables (entities), including Java data types to SQL data types
 - Simplifies the process of data persistence tasks
 
+## Why ORM (Object relational mapping?)
+Object relational mappers such as Hibernate help us to solve the issues associated with "converting" between objects in an OOP language and a database (in our case, structured as a relational database w/ tables). These issues are referred to as **impedance mismatches**, which is a term borrowed from electrical engineering where you have two interconnected circuits that have different impedances.
+
+There are 5 different issues that need to be addressed:
+1. Granularity: there could be mismatches in terms of the number of classes that are mapped with a certain number of tables in the database
+2. Inheritance: Inheritance is natural in OOP, but there is not really an easy way of expressing inheritance in a relational database
+3. Identity: equality is different in OOP (.equals() logic in Java enforce equality), while in a relational database, it is based on primary key
+4. Associations: In OOP, we have the concept of HAS-A, in which objects that have other objects are essentially in the form of a graph-like structure. In a relational database, we just have 2 tables for the association w/ FK pointing to PK
+5. Navigation: We access data differently in Java compared to a relational database. Ultimately, Hibernate helps us to easily grab all of the information that is required between different objects and their relations.
+
 ### Advantages
 - Open source and lightweight
 - Can use caching, so that you have performance benefits through not having to "hit" the database every single time
@@ -36,6 +46,9 @@
 - Session interface
     - The main way for Java applications to interact with Hibernate
     - Provides the ability to create, read, and delete objects
+    - Session is **NOT** thread-safe, meaning we should only have 1 Session per thread
+        - In the context of a back-end application, every request made to the server "spins-up" another thread
+        - We should have a new Session per thread (aka per request)
 - Transaction interface
     - Allows transactions to be defined
     - We can commit and rollback, for example
@@ -91,6 +104,8 @@ Flushing
 
 ## Ways to retrieve data using Hibernate
 - HQL: Hibernate Query Language
+    - You don't use the table name in the database, or the column names
+    - You use the class name in Java itself, as well as the actual property names (variable names)
 - JPQL: Java Persistence Query Language
 - Native SQL
 - Criteria API

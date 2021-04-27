@@ -1,16 +1,16 @@
 package com.revature.main;
 
-import java.util.List;
-
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.revature.models.Pirate;
+import com.revature.models.Ship;
+import com.revature.models.ShipDetail;
 import com.revature.utils.SessionUtility;
 
 public class Test {
 
 	public static void main(String[] args) {
-		Session session = SessionUtility.getSession();
+		Session session = SessionUtility.getSessionFactory().openSession();
 
 //		Ship ship = session.get(Ship.class, 1); // When we use .get, our ship object is in the persistent state
 //		System.out.println(ship);
@@ -29,20 +29,20 @@ public class Test {
 //		System.out.println(p2);
 		
 		// This is HQL
-		Pirate edward = (Pirate) session.createQuery("FROM Pirate p WHERE p.firstName = 'Edward'").getSingleResult();
-		
-		// getting all pirates
-		// This is also HQL
-		List<Pirate> pirates = session.createQuery("FROM Pirate p").getResultList();
-		System.out.println(pirates);
-		
-		// Getting pirates that belong to ship w/ id 1
-		// This is also HQL
-		List<Pirate> piratesOfShipId1 = session.createQuery("SELECT p FROM Pirate p JOIN p.ship s WHERE s.id = 1").getResultList();
-		System.out.println("pirates of ship id 1: " + piratesOfShipId1);
-		
-//		System.out.println(edward);
-		System.out.println(edward.getShip());
+//		Pirate edward = (Pirate) session.createQuery("FROM Pirate p WHERE p.firstName = 'Edward'").getSingleResult();
+//		
+//		// getting all pirates
+//		// This is also HQL
+//		List<Pirate> pirates = session.createQuery("FROM Pirate p").getResultList();
+//		System.out.println(pirates);
+//		
+//		// Getting pirates that belong to ship w/ id 1
+//		// This is also HQL
+//		List<Pirate> piratesOfShipId1 = session.createQuery("SELECT p FROM Pirate p JOIN p.ship s WHERE s.id = 1").getResultList();
+//		System.out.println("pirates of ship id 1: " + piratesOfShipId1);
+//		
+////		System.out.println(edward);
+//		System.out.println(edward.getShip());
 		
 		// With Hibernate, we still follow the 3 layered architecture of the Controller layer, service layer,
 		// and dao layer. 
@@ -51,6 +51,22 @@ public class Test {
 		
 		// So, for project-1, use Hibernate, because it will make things a lot easier
 		// Just get past the initial setup of Hibernate and the mapping of Entities
+		
+		/*
+		 * 
+		 */
+		
+		Ship ship1 = session.get(Ship.class, 1);
+		// What hibernate object state is ship1 in?
+		// When you retrieve a new object from the database through hibernate, you will be given a persistent object.
+		
+		Transaction tx1 = session.beginTransaction();
+		
+		ShipDetail sd = new ShipDetail(100, "a ship");
+		
+		ship1.setShipDetail(sd);
+		
+		tx1.commit();
 	}
 
 }

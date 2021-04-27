@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.revature.models">
+	<class name="ShipDetail" table="ship_detail">
+		<id name="id" type="int" column="ship_detail_id">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="capacity" type="int"></property>
+		<property name="shipDescription" type="string"></property>
+	</class>
+</hibernate-mapping>

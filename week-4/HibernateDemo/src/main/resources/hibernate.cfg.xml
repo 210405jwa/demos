@@ -29,5 +29,11 @@
 		<mapping class="com.revature.models.Pirate"></mapping>
 		<mapping class="com.revature.models.Ship"></mapping>
 		
+		<!-- Instead of using annotations, we could also provide our mappings using xml configuration 
+		This was the old way of doing it, before annotations were implemented -->
+		<!-- We would have created another configuration file that contained the mappings for our class and the various fields
+		and then link to the configuration file from this main hibernate.cfg.xml file -->
+		<mapping resource="shipdetail.hbm.xml"></mapping>
+		
 	</session-factory>
 </hibernate-configuration>

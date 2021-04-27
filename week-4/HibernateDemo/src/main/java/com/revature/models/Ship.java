@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +20,9 @@ public class Ship {
 	@Column(name = "ship_name", length = 50)
 	private String shipName;
 	
+	@OneToOne
+	private ShipDetail shipDetail;
+	
 	// Technically, we could have a @ManyToOne and a @OneToMany on both tables of the relationship
 	// but you will probably run into a lot of issues doing that
 	// so, I like to stick with just @ManyToOne instead, such as what I have on the Pirate class
@@ -29,9 +33,8 @@ public class Ship {
 		super();
 	}
 
-	public Ship(int id, String shipName) {
+	public Ship(String shipName) {
 		super();
-		this.id = id;
 		this.shipName = shipName;
 	}
 
@@ -51,9 +54,12 @@ public class Ship {
 		this.shipName = shipName;
 	}
 
-	@Override
-	public String toString() {
-		return "Ship [id=" + id + ", shipName=" + shipName + "]";
+	public ShipDetail getShipDetail() {
+		return shipDetail;
+	}
+
+	public void setShipDetail(ShipDetail shipDetail) {
+		this.shipDetail = shipDetail;
 	}
 
 	@Override
@@ -61,6 +67,7 @@ public class Ship {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + ((shipDetail == null) ? 0 : shipDetail.hashCode());
 		result = prime * result + ((shipName == null) ? 0 : shipName.hashCode());
 		return result;
 	}
@@ -76,12 +83,22 @@ public class Ship {
 		Ship other = (Ship) obj;
 		if (id != other.id)
 			return false;
+		if (shipDetail == null) {
+			if (other.shipDetail != null)
+				return false;
+		} else if (!shipDetail.equals(other.shipDetail))
+			return false;
 		if (shipName == null) {
 			if (other.shipName != null)
 				return false;
 		} else if (!shipName.equals(other.shipName))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Ship [id=" + id + ", shipName=" + shipName + ", shipDetail=" + shipDetail + "]";
 	}
 
 }
