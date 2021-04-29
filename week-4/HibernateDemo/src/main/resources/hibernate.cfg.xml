@@ -14,6 +14,9 @@
 		<!-- Show generated SQL queries -->
 		<property name="show_sql">true</property>
 		
+		<!-- Associate the 'current session' with the current thread (every request is a single thread of execution) -->
+		<property name="hibernate.current_session_context_class">thread</property>
+		
 		<!-- L2 Caching Settings (setup) -->
 		<property name="cache.use_second_level_cache">true</property>
 		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
