@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+/* by global styles, we mean that the styling here will be applied across any components
+in our app. We typically want to reserve styles.css ONLY for importing CSS frameworks like bootstrap */
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
