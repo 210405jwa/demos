@@ -1,0 +1,26 @@
+<div class="title">Miles Per Hour to Kilometers Per Hour</div>
+<div class="field">
+  <label class="label has-text-left">Miles Per Hour</label>
+  <div class="control">
+    <input [(ngModel)]="milesPerHour" type="text" class="input" placeholder="Miles Per Hour">
+  </div>
+  <!-- <div class="has-text-left mt-3">
+    <button class="button is-primary">Convert</button>
+  </div> -->
+  <div class="content has-text-left mt-2">
+    <p>Kilometers Per Hour: {{ !!milesPerHour ? (milesPerHour | mphToKph) : '' }}</p>
+  </div>
+</div>
+
+<div class="field">
+  <label class="label has-text-left">Kilometers Per Hour</label>
+  <div class="control">
+    <input [(ngModel)]="kilometersPerHour" type="text" class="input" placeholder="Kilometers Per Hour">
+  </div>
+  <!-- <div class="has-text-left mt-3">
+    <button class="button is-primary">Convert</button>
+  </div> -->
+  <div class="content has-text-left mt-2">
+    <p>Miles Per Hour: {{ !!kilometersPerHour ? (kilometersPerHour | mphToKph:true) : '' }}</p>
+  </div>
+</div>

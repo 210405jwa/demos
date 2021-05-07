@@ -1,58 +1,12 @@
-<div class="form-group">
-  <label class="form-label">Length of Password</label>
+<app-length-input (inputChange)="passwordLength = $event"
+  (toggle)="generatorIsDisplayed = !generatorIsDisplayed"></app-length-input>
 
-  <input (input)="onInputChange($event)" type="number" min=1 class="form-control">
+<app-generator *ngIf="generatorIsDisplayed" [length]="passwordLength"></app-generator>
 
-  <label class="form-label">Use Letters</label>
-  <input type="checkbox" (change)="onUseLetterChange()">
-  <label class="form-label">Use Special Characters</label>
-  <input type="checkbox" (change)="onUseSpecialCharacterChange()">
-  <label class="form-label">Use Numbers</label>
-  <input type="checkbox" (change)="onUseNumberChange()">
+<!-- <hr>
 
-  <!-- (event)="<valid TypeScript code goes here" -->
-  <button [disabled]="!(useLetters || useNumbers || useSpecialCharacters)" class="btn btn-primary" (click)="onButtonClick()">Generate Password</button>
-  <button class="btn btn-danger" (click)="clearOutput()">Clear Message</button>
-</div>
-
-<!-- We're utilizing the concept of falsy/truthy values here -->
-<!-- For strings, '' evaluates to false, if there are characters, it will be true -->
-<div *ngIf="passwordOutput">
-  <h1>Output:</h1>
-  <p>String Interpolation: {{ passwordOutput }}</p>
-
-  <input type="text" [value]="passwordOutput"> <!-- Property Binding -->
-</div>
+<app-ngforexample></app-ngforexample>
 
 <hr>
 
-<h1>ngFor Example</h1>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- *ngFor Structural Directive -->
-      <tr *ngFor="let data of tableData">
-        <td>{{ data.id }}</td>
-        <td>{{ data.firstName }}</td>
-        <td>{{ data.lastName }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<hr>
-
-<h1>ngSwitch Example</h1>
-<div [ngSwitch]="100">
-  <p *ngSwitchCase="1">Number 1</p>
-  <p *ngSwitchCase="2">Number 2</p>
-  <p *ngSwitchCase="3">Number 3</p>
-  <p *ngSwitchDefault>Not 1 through 3</p>
-</div>
+<app-ngswitchexample></app-ngswitchexample> -->

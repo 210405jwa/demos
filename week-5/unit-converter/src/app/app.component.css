@@ -1,0 +1,6 @@
+/* Difference between styles.css and app.component.css?
+  styles.css is global, which means the styling can apply to every single element in our project
+
+  however, individual component.css files will only apply to the elements defined within that
+  component's template
+*/

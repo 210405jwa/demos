@@ -1,0 +1,21 @@
+<div>
+
+  <label class="form-label">Use Letters</label>
+  <input type="checkbox" (change)="onUseLetterChange()">
+  <label class="form-label">Use Special Characters</label>
+  <input type="checkbox" (change)="onUseSpecialCharacterChange()">
+  <label class="form-label">Use Numbers</label>
+  <input type="checkbox" (change)="onUseNumberChange()">
+
+  <!-- (event)="<valid TypeScript code goes here" -->
+  <!-- ngClass example w/ disabled class instead of using the button's disabled attribute -->
+  <button class="btn btn-primary" [ngClass]="{ 'disabled' : shouldButtonBeDisabled() }" (click)="onButtonClick()">Generate Password</button>
+  <button class="btn btn-danger" (click)="clearOutput()">Clear Password</button>
+</div>
+
+<div *ngIf="passwordOutput">
+  <h1 [ngStyle]="{ 'color' : (passwordOutput.length > 5) ? 'green' : 'red' }">Output:</h1>
+  <p>String Interpolation: {{ passwordOutput }}</p>
+
+  <input type="text" [value]="passwordOutput"> <!-- Property Binding -->
+</div>

@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      <img src="assets/logo.png" alt="A logo" style="max-height: 100px">
+    </div>
+  </div>
+</nav>
+
+<section class="section has-text-centered">
+  <div class="container">
+    <!-- a width of 12 total for a row -->
+    <div class="columns">
+      <div class="column is-6">
+        <div class="tabs is-boxed">
+          <ul>
+            <li routerLinkActive="is-active"><a routerLink='speed'>Speed</a></li>
+            <li routerLinkActive="is-active"><a routerLink='temperature'>Temperature</a></li>
+          </ul>
+        </div>
+        <!-- Router Outlet for rendering a component: Speed or Temperature component -->
+        <router-outlet></router-outlet>
+      </div>
+      <div class="column is-3">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis, labore! Nihil libero, eius iste velit quos cupiditate natus dolores? Rem natus distinctio totam enim itaque cum blanditiis dicta. Molestias suscipit ut cum odio architecto, facere veritatis dignissimos eos ea necessitatibus exercitationem eaque at consequatur molestiae tempore? Dolor animi velit doloribus?</p>
+      </div>
+      <div class="column is-3">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores nisi quaerat, deserunt sapiente, voluptas impedit labore facere reiciendis accusamus perspiciatis numquam, animi voluptatum officia? Natus voluptatum officiis eligendi. Pariatur aliquam explicabo possimus amet voluptatibus cum, delectus inventore sequi dicta nemo, facilis, labore nulla. Nemo ullam fugit fugiat provident est consequuntur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
