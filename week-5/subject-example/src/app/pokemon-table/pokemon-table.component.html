@@ -1,0 +1,26 @@
+<h1>Pokemon Table:</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>height</th>
+      <th>weight</th>
+      <th>base experience</th>
+      <th>image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let pokemon of pokemons; let i = index;">
+      <tr>
+        <td>{{ pokemon.id }}</td>
+        <td>{{ pokemon.name }}</td>
+        <td>{{ pokemon.height }}</td>
+        <td>{{ pokemon.weight }}</td>
+        <td>{{ pokemon.base_experience }}</td>
+        <td><img [src]="pokemon.sprites.front_default" [alt]="pokemon.name"></td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

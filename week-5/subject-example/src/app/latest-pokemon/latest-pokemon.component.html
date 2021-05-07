@@ -1,0 +1,11 @@
+<h1>Latest Pokemon Added:</h1>
+<div>
+  <ul>
+    <li>{{ latestPokemon.id }}</li>
+    <li>{{ latestPokemon.name }}</li>
+    <li>{{ latestPokemon.height }}</li>
+    <li>{{ latestPokemon.weight }}</li>
+    <li>{{ latestPokemon.base_experience }}</li>
+    <li><img [src]="latestPokemon.sprites.front_default" [alt]="latestPokemon.name"></li>
+  </ul>
+</div>
