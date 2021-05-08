@@ -1,0 +1,168 @@
+# Study Guide
+
+# Topics
+- Node
+    - Runtime environment for JavaScript that is outside of the browser
+    - This is what allows you to run JavaScript "directly"
+    - We need to utilize Node with Angular for the purpose of utilizing development tools such as npm, webpack, and angular CLI, along with the development server
+- NPM
+    - Node Package Manager
+    - It is a package manager specifically for node packages
+    - We can install dependencies into our own node package
+    - When we create an Angular project, it is considered its own node package
+    - The package.json file is very important because it contains the project details, required dependencies, and scripts
+    - We can use `npm install` inside of our project directory, which will install the necessary dependencies listed in the package.json file
+- Angular
+    - Uses TypeScript
+        - A SuperSet of JavaScript
+            - All JavaScript is valid TypeScript
+        - Has type safety / strong typing
+            - Variable declaration w/ a type:
+                - `let x: string;`
+            - Type inferencing
+                - If we declare a variable and assign a value on the same line, the variable can only have that one type
+                - `let x = 'a string'`: x is a string type that can't be changed
+            - Types
+                - All of the JS types
+                    - number
+                    - string
+                    - boolean
+                    - undefined
+                    - null
+                    - object...
+                - `any`
+                    - allows you to assign any type to the variable
+                - `void`
+                    - this is a return type to specify the function doesn't return anything
+                    - not used on variables themselves
+                - `never`
+                    - means the function will never complete
+                        - only valid when you have an infinite loop
+            - Has type related features
+                - Interfaces
+                    - Used to create a type
+                    - Can specify different properties
+                    - Different method signatures
+                - Generics
+                    - Similar to what we have with Java
+                    - Class generics
+                    - Function generics
+            - Access modifiers
+                - public
+                - private
+                - protected
+                - NO default access modifier
+                    - if there is no modifier on a variable in a class, it is **public**
+            - Decorators
+                - Different than how annotations in Java work
+                - Decorators are special functions
+    - Angular CLI
+        - Command line interface
+        - `ng new` to create a new project
+        - `ng generate` to generate files off of miscellaneous schematics
+            - `ng generate component example`
+            - `ng generate service example`
+            - etc
+        - ng serve: (or we can use npm run start, which is an npm script for running ng serve)
+            - this creates a development server that will refresh in real time when we make changes while developing
+        - ng build
+            - creates the static files (index.html, .js files, .css file) that we can use to deploy the application on a webserver
+    - Primary structures of Angular
+        - Modules
+            - Used `@NgModule` decorator
+                - contains a list of our different components and services
+                - contains imported modules that we can make use of
+            - Help us to organize different components and services, especially for larger applications
+        - Services
+            - Represent isolated, independent logic that isn't tied to the "view"
+            - This is where our business logic should go
+            - Uses `@Injectible` decorator
+            - Can be "injected" as a dependency into a component
+                - Angular has a Dependency Injection system that will detect whether a component requires a dependency, and will automatically keep track of instantiating and storing these services to be placed into the constructor at component instantiation
+            - Often useful for containing logic related to retrieving data from a backend using HTTP requests
+            - Can also be used to cache data and pass data between components
+                - We saw an example of 2 components utilizing a service to retrieve a Subject that they could then subscribe to, and that another component (or components) could publish to
+        - Components
+            - Represent a portion or section of a webpage
+            - If you have to repeat a lot of HTML, you probably want to create a component and reuse that component over and over
+            - Contains 4 files: `.component.ts`, `.component.html`, `.component.css`, `.component.spec.ts`
+            - `.html` and `.css` form the view
+            - `.ts` controls logic related to the view
+            - Components can be nested inside of other components
+                - We can have diagrams to illustrate the architecture of our application regarding these nested structures
+            - Uses `@Component` decorator
+    - Minor Schematics
+        - Pipes
+            - Can be used to transform data into other data
+            - Most commonly used to transform strings
+            - We COULD use pipes to filter out data as well
+                - Think back to p1 where we needed to filter reimbursements according to pending, approved, denied
+            - But performance-wise, this might not be very efficient
+        - Directives
+            - Can create custom directives
+            - Many built-in directives
+    - Built-in Directives
+        - Structural Directives: control the structure of the view
+            - prefixed with *
+            - *ngFor
+            - *ngIf
+            - [ngSwitch] (property binding, not structural, but provides information to...)
+                - *ngSwitchCase
+                - *ngDefaultCase
+        - Attribute Directives
+            - ngClass
+            - ngStyle
+        - Component Directive
+            - COMPONENTS ARE TECHNICALLY DIRECTIVES
+    - Databinding
+        - The mechanism by which we pass data between our 
+        "view" and logic (`.ts` and `.html`)
+        - String Interpolation
+            - Uses `{{ }}` syntax
+            - Used to bind information from `.ts` -> `.html`
+        - Property/attribute binding
+            - Uses `[]` syntax
+                - `[src]="http://images.google.com/image.png"`
+            - Used to bind information from `.ts` -> `.html` element attributes
+        - Event Binding
+            - Uses `()` syntax
+                - `(click)="onButtonClick()`
+            - Used to trigger functions in `.ts` in response to events that are triggered on the view `.html`
+        - Two-way binding
+            - Doesn't actually really have a name, but we could just refer to it as `ngModel`
+            - Uses `[(ngModel)]` syntax
+            - Requires `FormsModule` to be imported inside of our AppModule (or whatever module the component we want the use two-way databinding with is in)
+            - Works with `input` tags specifically
+            - Binds data from `.html` -> `.ts` and `.ts` -> `.html` (both ways)
+    - Routing System
+        - Angular is used for single page applications, so we need a way to simulate going to different pages
+        - The routing system allows us to navigate between different components based on a URL structure
+        - It allows us to display components through a `router-outlet` tag
+        - We can customize paths that the routing system leverages through different routing modules
+        - For links, instead of using <a href="">, we use <a routerLink=""> (so that we don't actually reload the page)
+            - This is an important point, because you might accidentally use <a href="">, which will look the same at first glance when you are clicking links, but it will actually reload the page and destroy whatever state you might have inside of your various services, components, etc.
+    - Angular Version History
+        - AngularJS was built using JavaScript
+            - Was the first version of Angular
+        - Angular is the second version that was built using TypeScript
+            - Is referred to as Angular 2
+            - Angular 2 - 11 are more similar than AngularJs
+        - Don't confuse AngularJS with Angular 2 through 11
+    - RxJS Observables
+        - Similar to promises, but can have multiple values over time
+        - Can be cancelled, but promises cannot
+        - Values passing through an Observable can also be processed using operators
+            - Many different operators available
+        - Observables can have multiple listeners on the same "data pipeline"
+    - HttpClientModule && HttpClient
+        - Used to send HTTP Requests using Observables
+        - HttpClient service requires HttpClientModule to be imported
+        - Can be injected wherever required
+            - Directly in a component
+            - Or directly in a service
+    - RxJS Subjects
+        - Expanding upon the idea of observables
+        - Allows multiple different publishers to publish to the same data stream
+        - Is an implementation of the pub-sub design pattern
+            - This is a useful design pattern across many different technologies, not just Angular
+            - "PubSub"
