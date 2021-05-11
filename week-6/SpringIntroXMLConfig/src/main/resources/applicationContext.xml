@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- A Spring bean is an object that Spring Framework instantiates and manages for us -->
+	<!-- Spring beans are stored in an inversion of control (IoC) container -->
+	<!-- Here we provide a configuration for what beans we want inside of our container -->
+	
+	<!-- We want a TrackCoach bean, so we can specify that here -->
+	<bean id="myTrackCoach" class="com.revature.TrackCoach">
+		
+		<!-- Since TrackCoach depends on TrackMotivationService, we also want to
+		specify a bean for TrackMotivationService, and have Spring Framework provide
+		this dependency to our 'myTrackCoach' bean -->
+		<constructor-arg ref="myTrackMotivationService" />
+	</bean>
+	
+	<bean id="myCodingCoach" class="com.revature.CodingCoach">
+		
+		<!-- Setter injection, using another bean dependency -->
+		<property name="motivateService" ref="myCodingMotivationService" />
+		
+		<!-- Setter injection, putting in a raw value for the String property in CodingCoach -->
+		<property name="name" value="${coach.name}" />
+	</bean>
+	
+	<!-- Provide bean definition for TrackMotivationService -->
+	<bean id="myTrackMotivationService" class="com.revature.service.TrackMotivationService"></bean>
+	
+	<!-- Provide bean definition for CodingMotivationService -->
+	<bean id="myCodingMotivationService" class="com.revature.service.CodingMotivationService"></bean>
+	
+	<!-- Link a properties file to be able to be referenced here -->
+	<context:property-placeholder location="classpath:myproperties.properties"/>
+</beans>					
