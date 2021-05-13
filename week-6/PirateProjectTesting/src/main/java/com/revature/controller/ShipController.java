@@ -30,7 +30,7 @@ public class ShipController {
 	private HttpServletRequest request;
 	@Autowired
 	private HttpServletResponse response;
-	
+		
 	@GetMapping(path = "ship/{id}")
 	@LoggedInOnly
 	public ResponseEntity<Object> getShipById(@PathVariable("id") int id) {
