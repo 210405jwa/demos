@@ -6,6 +6,7 @@
         - We don't need to create a Transaction object ourselves, manually committing, etc.
         - Instead we can make use of @Transactional annotations on our methods to treat everything inside of that method as a single database transaction
     - We can leverage DI throughout our different DAOs
+    - Testing becomes easier
 
 # We Must Configure/Define 3 Spring Beans
 1. DataSource

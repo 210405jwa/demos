@@ -44,6 +44,7 @@ The `Context` builds on top of the Core and Beans modules and allows access to o
     - Web module
     - AOP module
     - ORM module
+    - Test module
     - JDBC module
     - etc
 
