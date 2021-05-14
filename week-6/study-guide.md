@@ -1,0 +1,179 @@
+# Spring Study Guide
+- Spring
+    - Spring Modules
+        - Spring AOP
+        - Spring MVC
+        - Spring Core
+        - Spring Beans
+        - Spring Context
+        - etc
+    - "Core Container"
+        - Spring Core
+        - Spring Beans
+        - Spring Context
+        - This forms the base standard Dependency Injection features
+    - Spring Beans
+        - Stereotype Annotations
+            - `@Component` is a general Spring Bean
+            - `@Controller` is a Spring Bean for the controller layer of appliations utilizing Spring MVC
+            - `@Service` is a Spring Bean for the Service layer
+            - `@Repository` is a Spring Bean for the DAO layer
+            - For the most part, they all do the same thing
+                - SpringMVC adds configuration to `@Controller`
+                - SpringORM adds configuration to `@Repository`
+    - Dependency Injection
+    - Inversion of Control
+        - IoC Container (Spring container)
+            - Contains the Spring beans
+            - BeanFactory
+                - Lazily instantiates beans
+                - Older
+                - `bean.xml`
+            - ApplicationContext
+                - Eagerly instantiates beans
+                - Adds support for annotations
+                - `applicationContext.xml`
+    - Configuration
+        - XML Configuration
+        - Annotation-based configuration (Component scan)
+        - Java Configuration
+            - @Configuration: to specify configuration class
+            - @Bean to specify bean instantiation method
+        - Autowiring
+            - byName
+            - byType
+                - @Qualifier to distinguish between multiple beans of the same type
+    - BeanFactory v. ApplicationContext
+    - **Spring Bean Lifecycle**
+        - Lots of different parts
+        - Study closely based on the notes we have
+    - Bean Scopes
+        - Singleton (default)
+        - Prototype
+        - Web-aware scopes (available if our ApplicationContext is a WebApplicationContext)
+            - Request
+            - Session
+            - Used to have GlobalSession
+                - But deprecated as of Spring 5
+            - Application
+            - WebSocket
+    - Injection types
+        - Constructor Injection
+        - Setter injection
+        - Field Injection
+        - Pros/cons between the 3
+- SpringMVC
+    - Important components
+        - DispatcherServlet (configured in web.xml)
+            - loads its own context (dispatcherContext.xml)
+        - ContextLoaderListener (configured in web.xml)
+            - loads the main "root" context (applicationContext.xml)
+        - HandlerMapping (configured in dispatcherContext.xml)
+            - This is what the dispatcherServlet consults when figuring out where to delegate a request
+        - ViewResolver (configured in dispatcherContext.xml)
+    - Flow of MVC architecture
+        - DispatcherServlet -> HandlerMapping -> ViewResolver (if needed)
+            - Inside a REST API app, we don't really make use of the ViewResolver, because our "view" will be a separate frontend application developed w/ for example, Angular or React, vanilla JS and HTML/CSS, etc.
+- Spring AOP
+    - Aspect Oriented Programming
+    - Deals with "Aspects" that are "Cross Cutting Concerns"
+        - "Cross cutting concern": something that is utilized throughout an entire application, not just a single area or layer
+            - Security
+            - Logging
+            - Caching
+            - Validation
+            - Performance analysis
+    - Terminologies
+        - Aspect: a class containing different "Advice"
+            - An aspect should contain logic specific to a certain cross cutting concern
+            - ex. LoggingAspect, SecurityAspect, etc..
+        - Advice: What is actually injected into our "JoinPoint"
+            - @Before
+            - @After
+                - @AfterReturning
+                - @AfterThrowing
+            - @Around
+                - The most powerful
+                - Allows for both Before and After at the same time
+                - Wraps "around" the method
+                - Can prevent execution of the method
+        - JoinPoint
+            - Where you can inject
+            - This is usually going to be a method that is executed
+            - You can think of this as ANY method in your application
+        - Point Cut
+            - an expression analogous to regular expressions (not the same, but similar concept of matching)
+            - Specifies where we will inject
+            - Types of Point Cut expressions
+                - `execution`: we saw this one
+                - `@annotation`: we also saw this one
+                - `this`
+                - `target`
+                - `args`
+                - `within`
+    - `@ControllerAdvice`
+        - Allows us to quickly create Aspects for the controller layer
+        - Use `@ExceptionHandler` to handle custom logic in reaction to exceptions being thrown
+        - Use `@ResponseStatus` to quickly configure default response codes for an exception
+            - Can go on an Exception class itself
+            - Or a method in the `ControllerAdvice` annotated class
+- Spring Boot & Spring Data
+    - Spring Boot
+        - `Convention over configuration`
+        - The goal is to have developers up and running quickly with minimal configuration
+        - Benefits
+            - Embedded Tomcat Server
+            - Starter Dependencies
+            - `application.properties` file
+                - No more XML configuration
+        - `@SpringBootApplication`
+            - Implicitly provides the following annotations:
+                - `@Configuration`
+                - `@EnableAutoConfiguration`
+                - `@ComponentScan`
+    - Spring Data JPA
+        - Abstracts away the persistence layer even more than Hibernate
+        - Effectively build the repository implementation for us
+        - All we need to do is provide method names that conform to a certain standard
+            - Dynamically constructs DAO methods based on naming conventions
+        - API (Generic Interfaces)
+            - CrudRepository
+                - PagingAndSortingRepository
+                    - JpaRepository
+        - Supports JPA annotations
+        - `@Query` annotation to write your custom queries
+            - Utilizes JPQL, Java Persistence Query Language
+            - Similar to HQL, but not actually fully the same
+                - Pretty similar though
+        - `@Transactional`
+            - We saw this with Spring ORM as well
+            - Gives support for `Transaction Propagation Rules`
+            - Go to Spring ORM notes for details
+            - Used w/ `@Modifying` annotation within Spring Data JPA
+                - Required when using `@Query` for INSERT, UPDATE, DELETE
+    - Spring Data REST
+        - Constructs entire DAO, Service, and Controller layers for us based on an entity class
+        - Allows you to create an entire RESTful API extremely quickly
+        - However, is not easy to customize, so we often don't use it except for in cases of really simple logic
+- Spring Testing
+    - Introduces MockMvc
+    - Allows us to mock HTTP requests and test for information in the responses
+    - Provides the ability to perform integration testing by configuring contexts with the controller, service, dao layers, and all other beans fully wired up
+    - We can build both unit and integration tests depending on our test class configuration
+    - Use `MockMvcBuilders.standaloneSetup` for creating controller unit tests and by also mocking any dependencies with Mockito
+    - Use `MockMvcBuilders.webContextSetup` when we want to utilize an entire `WebApplicationContext` with all of our application's components wired together
+        - We would need to provide the ContextConfigurations and add the `@WebAppConfiguration` annotation
+        - Refer to the testing demos for examples
+    - Tests in Spring Boot applications utilize JUnit 5 instead of 4
+        - JUnit 5 is called Jupiter
+        - We also utilized JUnit 5 in our testing demo
+- Validation
+    - Validation allows us to validate different objects in our application to make sure that they conform to certain values
+    - For example, we might want to validate that a String for email address is actually formatted properly: `ex. xxxx@xxxx.com`
+    - Hibernate Validator is a common implementation for validating different object fields
+        - @NotNull
+        - @NotBlank
+        - @Email
+        - @Min(1)
+        - @Max(250)
+
