@@ -3,7 +3,7 @@ window.onload = function() {
 }
 
 function renderCurrentUser() {
-    fetch('http://localhost:7000/current_user', {
+    fetch('http://ec2-3-140-201-86.us-east-2.compute.amazonaws.com:7000/current_user', {
         method: 'GET',
         credentials: 'include'
     }).then((response) => {

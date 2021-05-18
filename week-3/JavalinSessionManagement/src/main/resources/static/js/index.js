@@ -9,7 +9,7 @@ function login() {
         password: pw
     };
 
-    fetch('http://localhost:7000/login', {
+    fetch('http://ec2-3-140-201-86.us-east-2.compute.amazonaws.com:7000/login', {
         method: 'POST',
         credentials: 'include', // this specifies that when you receive cookies, you should include them in future requests. So in our case, it's important so that the backend can identify if we are logged in or not.
         headers: {
